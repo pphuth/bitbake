@@ -1779,8 +1779,12 @@ class BuildInfoHelper(object):
             # 'defaultpkgname-<MACHINE>-<BUILDNAME>';
             # we need to change it to
             # <TARGET>-<MACHINE>-<BUILDNAME>
-            real_image_name = re.sub(r'^defaultpkgname', image_target.target,
-                image_name)
+            if image_name:
+                #real_image_name = re.sub(r'^defaultpkgname', image_target.target,
+                #    image_name)
+                real_image_name = image_name + '-' + buildname
+            else:
+                real_image_name = image_target.target + '-' + machine + '-' + buildname
 
             image_license_manifest_path = os.path.join(
                 license_directory,
