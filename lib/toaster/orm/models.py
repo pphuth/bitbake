@@ -944,7 +944,7 @@ class Target(models.Model):
 # kernel artifacts for a target: bzImage and modules*
 class TargetKernelFile(models.Model):
     target = models.ForeignKey(Target, on_delete=models.CASCADE)
-    file_name = models.FilePathField()
+    file_name = models.FilePathField(max_length=1024)
     file_size = models.IntegerField()
 
     @property
@@ -954,7 +954,7 @@ class TargetKernelFile(models.Model):
 # SDK artifacts for a target: sh and manifest files
 class TargetSDKFile(models.Model):
     target = models.ForeignKey(Target, on_delete=models.CASCADE)
-    file_name = models.FilePathField()
+    file_name = models.FilePathField(max_length=1024)
     file_size = models.IntegerField()
 
     @property
