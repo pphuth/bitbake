@@ -13,4 +13,9 @@ class Migration(migrations.Migration):
             name='file_name', 
             field=models.CharField(max_length=1024)
         ),
+        migrations.AlterField(
+            model_name='targetsdkfile',
+            name='file_name', 
+            field=models.CharField(max_length=1024)
+        ),
     ]
