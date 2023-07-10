@@ -232,6 +232,9 @@ class ORMWrapper(object):
 #        # which resolves a race condition with the build completion takedown
 #        transaction.set_autocommit(True)
 #        transaction.set_autocommit(False)
+        transaction.set_autocommit(False)
+        transaction.commit()
+        transaction.set_autocommit(True)
 
         signal_runbuilds()
 
