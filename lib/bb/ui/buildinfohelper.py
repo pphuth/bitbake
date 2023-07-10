@@ -228,10 +228,10 @@ class ORMWrapper(object):
         build.outcome = outcome
         build.save()
 
-        # We force a sync point here to force the outcome status commit,
-        # which resolves a race condition with the build completion takedown
-        transaction.set_autocommit(True)
-        transaction.set_autocommit(False)
+#        # We force a sync point here to force the outcome status commit,
+#        # which resolves a race condition with the build completion takedown
+#        transaction.set_autocommit(True)
+#        transaction.set_autocommit(False)
 
         signal_runbuilds()
 
@@ -897,7 +897,7 @@ class BuildInfoHelper(object):
         self.internal_state['taskdata'] = {}
         self.internal_state['targets'] = []
         self.task_order = 0
-        self.autocommit_step = 1
+#        self.autocommit_step = 1
         self.server = server
         self.orm_wrapper = ORMWrapper()
         self.has_build_history = has_build_history
@@ -1295,11 +1295,11 @@ class BuildInfoHelper(object):
                 task_information['outcome'] = Task.OUTCOME_FAILED
                 del self.internal_state['taskdata'][identifier]
 
-        # we force a sync point here, to get the progress bar to show
-        if self.autocommit_step % 3 == 0:
-            transaction.set_autocommit(True)
-            transaction.set_autocommit(False)
-        self.autocommit_step += 1
+#        # we force a sync point here, to get the progress bar to show
+#        if self.autocommit_step % 3 == 0:
+#            transaction.set_autocommit(True)
+#            transaction.set_autocommit(False)
+#        self.autocommit_step += 1
 
         self.orm_wrapper.get_update_task_object(task_information, True) # must exist
 
